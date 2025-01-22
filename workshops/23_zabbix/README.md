@@ -13,8 +13,9 @@
 
 ## 🚀 THE CHALLENGE
 
-<p align="justify">UpperTech recognized for its solutions for monitoring
-infrastructure wants to expand your offering by developing a new innovative service based on Zabbix. This service will focus on monitoring on-premises and AWS environments, with optimized integration of AWS services AWS to ensure maximum operational efficiency and visibility into infrastructure.</p>
+<p align="justify">UpperTech recognized for its  Infrastructure Monitoring Solutions (IMS), wants to expand its position in the market by offering a new innovative service based on Zabbix. 
+The service will focus on monitoring on-premises and AWS environments, with optimized integration of AWS services AWS to ensure maximum operational efficiency and visibility into infrastructure.
+</p>
 
 ## 🎲 OBJECTIVE
 
