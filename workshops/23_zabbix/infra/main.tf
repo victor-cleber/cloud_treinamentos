@@ -14,7 +14,7 @@ provider "aws" {
     tags = {
       workshop   = var.workshop_edition
       managed_by = var.managed_by
-      author      = var.author
+      author     = var.author
       group      = var.group
       course     = var.course
       subject    = var.subject
