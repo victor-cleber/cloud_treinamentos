@@ -8,14 +8,10 @@ resource "aws_vpc" "main" {
   }
 }
 
-data "aws_availability_zones" "availability_zones" {
-  state = "available"
-}
-
 resource "aws_subnet" "alb_subnet_b" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 6)
-  availability_zone       = data.aws_availability_zones.availability_zones.names[1]
+  availability_zone       = var.availability_zones[1]
   map_public_ip_on_launch = "true"
 
   tags = {
@@ -24,10 +20,10 @@ resource "aws_subnet" "alb_subnet_b" {
 }
 
 resource "aws_subnet" "alb_subnet_a" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = cidrsubnet(var.vpc_cidr, 8, 5)
+  vpc_id     = aws_vpc.main.id
+  cidr_block = cidrsubnet(var.vpc_cidr, 8, 5)
 
-  availability_zone       = data.aws_availability_zones.availability_zones.names[0]
+  availability_zone       = var.availability_zones[0]
   map_public_ip_on_launch = "true"
 
   tags = {
@@ -38,7 +34,7 @@ resource "aws_subnet" "alb_subnet_a" {
 resource "aws_subnet" "app_subnet_b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = cidrsubnet(var.vpc_cidr, 8, 4)
-  availability_zone = data.aws_availability_zones.availability_zones.names[1]
+  availability_zone = var.availability_zones[1]
 
   tags = {
     Name = "${var.vpc_name}_app_subnet_b"
@@ -48,7 +44,7 @@ resource "aws_subnet" "app_subnet_b" {
 resource "aws_subnet" "app_subnet_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = cidrsubnet(var.vpc_cidr, 8, 3)
-  availability_zone = data.aws_availability_zones.availability_zones.names[0]
+  availability_zone = var.availability_zones[0]
 
   tags = {
     Name = "${var.vpc_name}_app_subnet_a"
@@ -58,7 +54,7 @@ resource "aws_subnet" "app_subnet_a" {
 resource "aws_subnet" "db_subnet_b" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = cidrsubnet(var.vpc_cidr, 8, 2)
-  availability_zone = data.aws_availability_zones.availability_zones.names[1]
+  availability_zone = var.availability_zones[1]
 
   tags = {
     Name = "${var.vpc_name}_db_subnet_b"
@@ -68,7 +64,7 @@ resource "aws_subnet" "db_subnet_b" {
 resource "aws_subnet" "db_subnet_a" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = cidrsubnet(var.vpc_cidr, 8, 1)
-  availability_zone = data.aws_availability_zones.availability_zones.names[0]
+  availability_zone = var.availability_zones[0]
 
   tags = {
     Name = "${var.vpc_name}_db_subnet_a"
