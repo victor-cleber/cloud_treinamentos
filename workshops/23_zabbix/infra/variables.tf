@@ -62,5 +62,5 @@ variable "ec2_instance_name" {
 #key pair - Location to the SSH Key generate using openssl or ssh-keygen or AWS KeyPair
 variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
-  default     = "../../../ec2_rsa.pub"
+  default     = "./ec2_rsa.pub"
 }
