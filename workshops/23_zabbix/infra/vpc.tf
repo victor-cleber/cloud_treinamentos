@@ -15,7 +15,7 @@ resource "aws_subnet" "alb_subnet_b" {
   map_public_ip_on_launch = "true"
 
   tags = {
-    Name = "${var.vpc_name}_alb_subnet_b"
+    Name = "${var.vpc_name}_alb_zabbix_subnet_b"
   }
 }
 
@@ -27,7 +27,7 @@ resource "aws_subnet" "alb_subnet_a" {
   map_public_ip_on_launch = "true"
 
   tags = {
-    Name = "${var.vpc_name}_alb_subnet_a"
+    Name = "${var.vpc_name}_alb_zabbix_subnet_a"
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_subnet" "app_subnet_b" {
   availability_zone = var.availability_zones[1]
 
   tags = {
-    Name = "${var.vpc_name}_app_subnet_b"
+    Name = "${var.vpc_name}_app_zabbix_subnet_b"
   }
 }
 
@@ -47,7 +47,7 @@ resource "aws_subnet" "app_subnet_a" {
   availability_zone = var.availability_zones[0]
 
   tags = {
-    Name = "${var.vpc_name}_app_subnet_a"
+    Name = "${var.vpc_name}_app_zabbix_subnet_a"
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_subnet" "db_subnet_b" {
   availability_zone = var.availability_zones[1]
 
   tags = {
-    Name = "${var.vpc_name}_db_subnet_b"
+    Name = "${var.vpc_name}_db_zabbix_subnet_b"
   }
 }
 
@@ -67,7 +67,7 @@ resource "aws_subnet" "db_subnet_a" {
   availability_zone = var.availability_zones[0]
 
   tags = {
-    Name = "${var.vpc_name}_db_subnet_a"
+    Name = "${var.vpc_name}_db_zabbix_subnet_a"
   }
 }
 
@@ -89,7 +89,7 @@ resource "aws_route_table" "alb_rt" {
   }
 
   tags = {
-    Name = "${var.vpc_name}_alb_route_table"
+    Name = "${var.vpc_name}_alb_zabbix_route_table"
   }
 }
 
@@ -97,7 +97,7 @@ resource "aws_route_table" "app_rt" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "${var.vpc_name}_app_route_rable"
+    Name = "${var.vpc_name}_app_zabbix_route_rable"
   }
 }
 
@@ -105,7 +105,7 @@ resource "aws_route_table" "db_rt" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "${var.vpc_name}_db_route_table"
+    Name = "${var.vpc_name}_db_zabbiz_route_table"
   }
 }
 

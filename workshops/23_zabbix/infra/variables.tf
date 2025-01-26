@@ -52,11 +52,16 @@ variable "availability_zones" {
   default     = ["us-east-1a", "us-east-1b"]
 }
 
-
-variable "ec2_instance_name" {
-  description = "EC2 instance name"
+variable "zabbix_server" {
+  description = "EC2 Zabbix instance name"
   type        = string
-  default     = "Zabbix_server"
+  default     = "srv_zabbix"
+}
+
+variable "jump_host" {
+  description = "EC2 JH instance name"
+  type        = string
+  default     = "jump_host"
 }
 
 #key pair - Location to the SSH Key generate using openssl or ssh-keygen or AWS KeyPair
@@ -64,3 +69,9 @@ variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
   default     = "./ec2_rsa.pub"
 }
+
+variable "user_name" {
+  description = "Zabbix DB username"
+  default = "zabbix"
+}
+
