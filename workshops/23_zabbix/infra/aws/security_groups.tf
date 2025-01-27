@@ -5,13 +5,22 @@ resource "aws_security_group" "alb_security_group" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
+    description = "HTTP ingress"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+   ingress {
+    description = "HTTPS ingress"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   ingress {
+    description = "SSH ingress"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -33,7 +42,7 @@ resource "aws_security_group" "app_security_group" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description = "HTTPS ingress"
+    description = "From ALB - HTTPS ingress"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
@@ -41,7 +50,7 @@ resource "aws_security_group" "app_security_group" {
   }
 
   ingress {
-    description = "HTTP ingress"
+    description = "From ALB - HTTP ingress"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -71,7 +80,7 @@ resource "aws_security_group" "database_security_group" {
 
 
   ingress {
-    description     = "MariaDb ingress"
+    description     = "From APP - MariaDb ingress"
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"

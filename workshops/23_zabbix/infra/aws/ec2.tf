@@ -1,14 +1,14 @@
-resource "aws_key_pair" "ec2_server" {
+resource "aws_key_pair" "ec2" {
   key_name   = "${var.zabbix_server}_key_pair"
   public_key = file(var.ssh_pubkey_file)
 }
 
-resource "aws_instance" "srv_zabbix_01" {
+resource "aws_instance" "srv_zabbix" {
   ami                         = "ami-0e1bed4f06a3b463d"
   subnet_id                   = aws_subnet.alb_subnet_a.id
   instance_type               = "t2.micro"
   associate_public_ip_address = true
-  key_name                    = aws_key_pair.ec2_server.key_name
+  key_name                    = aws_key_pair.ec2.key_name
   security_groups             = [aws_security_group.alb_security_group.id]
   # user_data                   = <<EOF
   #        sudo su
@@ -22,12 +22,12 @@ resource "aws_instance" "srv_zabbix_01" {
   }
 }
 
-# resource "aws_instance" "jump_host" {
+# resource "aws_instance" "srv_graphana" {
 #   ami                         = "ami-0e1bed4f06a3b463d"
 #   subnet_id                   = aws_subnet.alb_subnet_a.id
 #   instance_type               = "t2.micro"
 #   associate_public_ip_address = true
-#   key_name                    = aws_key_pair.ec2_server.key_name
+#   key_name                    = aws_key_pair.ec2.key_name
 #   security_groups             = [aws_security_group.app_security_group.id]
 #   user_data                   = <<EOF
 #         # #!/bin/bash

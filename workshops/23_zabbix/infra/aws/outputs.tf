@@ -3,8 +3,12 @@ output "vpc_arn" {
 }
 
 output "zabbix_ip" {
-  value = aws_instance.srv_zabbix_01.public_ip
+  value = aws_instance.srv_zabbix.public_ip
 }
+
+# output "graphana_ip" {
+#   value = aws_instance.srv_graphana.public_ip
+# }
 
 output "rds_endpoint" {
   value = aws_db_instance.db_instance.endpoint
