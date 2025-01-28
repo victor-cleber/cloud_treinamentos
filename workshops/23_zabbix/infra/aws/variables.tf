@@ -69,9 +69,3 @@ variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
   default     = "./ec2_rsa.pub"
 }
-
-variable "user_name" {
-  description = "Zabbix DB username"
-  default = "zabbix"
-}
-
