@@ -58,10 +58,16 @@ variable "zabbix_server" {
   default     = "srv_zabbix"
 }
 
-variable "jump_host" {
-  description = "EC2 JH instance name"
+variable "graphana_server" {
+  description = "EC2 Graphana instance name"
   type        = string
-  default     = "jump_host"
+  default     = "srv_graphana"
+}
+
+variable "glpi_server" {
+  description = "EC2 GLPI instance name"
+  type        = string
+  default     = "srv_glpi"
 }
 
 #key pair - Location to the SSH Key generate using openssl or ssh-keygen or AWS KeyPair

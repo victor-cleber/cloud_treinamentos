@@ -12,6 +12,7 @@ resource "aws_instance" "srv_zabbix_01" {
   ami                         = "ami-0e1bed4f06a3b463d"
   subnet_id                   = aws_subnet.alb_subnet_a.id
   instance_type               = "t2.micro"
+  iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
   associate_public_ip_address = true
   key_name                    = aws_key_pair.generated_key.key_name
   security_groups             = [aws_security_group.alb_security_group.id]
