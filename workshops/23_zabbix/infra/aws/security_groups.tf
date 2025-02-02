@@ -20,20 +20,13 @@ resource "aws_security_group" "alb_security_group" {
   }
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-    ingress {
     protocol    = "tcp"
     from_port   = 10050
     to_port     = 10051
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-    ingress {
+  ingress {
     description = "Grafana server"
     from_port   = 3000
     to_port     = 3000
@@ -41,12 +34,14 @@ resource "aws_security_group" "alb_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    "Name" = "alb_zabbix_security_group"
   }
 }
 
@@ -78,14 +73,13 @@ resource "aws_security_group" "app_security_group" {
     cidr_blocks = ["0.0.0.0/0"] #[aws_security_group.alb_security_group.id]
   }
 
-    ingress {
+  ingress {
     description = "Grafana server"
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
 
   egress {
     from_port   = 0

@@ -58,10 +58,10 @@ variable "zabbix_server" {
   default     = "srv_zabbix"
 }
 
-variable "graphana_server" {
-  description = "EC2 Graphana instance name"
+variable "grafana_server" {
+  description = "EC2 Grafana instance name"
   type        = string
-  default     = "srv_graphana"
+  default     = "srv_grafana"
 }
 
 variable "glpi_server" {

@@ -7,8 +7,16 @@ output "private_key" {
   sensitive = true
 }
 
-output "server_ip" {
-  value = aws_instance.srv_zabbix_01.public_ip
+output "zabbix_server_ip" {
+  value = aws_instance.srv_zabbix.public_ip
+}
+
+output "grafana_server_ip" {
+  value = aws_instance.srv_grafana.public_ip
+}
+
+output "glpi_server_ip" {
+  value = aws_instance.srv_glpi.public_ip
 }
 
 output "rds_endpoint" {
