@@ -58,10 +58,16 @@ variable "zabbix_server" {
   default     = "srv_zabbix"
 }
 
-variable "jump_host" {
-  description = "EC2 JH instance name"
+variable "grafana_server" {
+  description = "EC2 Grafana instance name"
   type        = string
-  default     = "jump_host"
+  default     = "srv_grafana"
+}
+
+variable "glpi_server" {
+  description = "EC2 GLPI instance name"
+  type        = string
+  default     = "srv_glpi"
 }
 
 #key pair - Location to the SSH Key generate using openssl or ssh-keygen or AWS KeyPair
@@ -69,9 +75,3 @@ variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
   default     = "./ec2_rsa.pub"
 }
-
-variable "user_name" {
-  description = "Zabbix DB username"
-  default = "zabbix"
-}
-

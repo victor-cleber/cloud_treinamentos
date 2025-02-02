@@ -5,6 +5,14 @@ resource "aws_security_group" "alb_security_group" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
+    description = "HTTPS ingress"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -12,8 +20,16 @@ resource "aws_security_group" "alb_security_group" {
   }
 
   ingress {
-    from_port   = 22
-    to_port     = 22
+    protocol    = "tcp"
+    from_port   = 10050
+    to_port     = 10051
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Grafana server"
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -24,8 +40,10 @@ resource "aws_security_group" "alb_security_group" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    "Name" = "alb_zabbix_security_group"
+  }
 }
-
 
 resource "aws_security_group" "app_security_group" {
   name        = "app_zabbix_security_group"
@@ -37,13 +55,28 @@ resource "aws_security_group" "app_security_group" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"] #[aws_security_group.alb_security_group.id]
   }
 
   ingress {
     description = "HTTP ingress"
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] #[aws_security_group.alb_security_group.id]
+  }
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 10050
+    to_port     = 10051
+    cidr_blocks = ["0.0.0.0/0"] #[aws_security_group.alb_security_group.id]
+  }
+
+  ingress {
+    description = "Grafana server"
+    from_port   = 3000
+    to_port     = 3000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -92,5 +125,4 @@ resource "aws_security_group" "database_security_group" {
   lifecycle {
     create_before_destroy = true
   }
-
 }
