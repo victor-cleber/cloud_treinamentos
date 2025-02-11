@@ -1,3 +1,10 @@
+
+resource "aws_key_pair" "ec2" {
+  key_name   = "${var.zabbix_server}_key_pair"
+  public_key = file(var.ssh_pubkey_file)
+}
+
+
 resource "tls_private_key" "example" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -8,13 +15,18 @@ resource "aws_key_pair" "generated_key" {
   public_key = tls_private_key.example.public_key_openssh
 }
 
+
 resource "aws_instance" "srv_zabbix" {
   ami                         = "ami-0e1bed4f06a3b463d"
   subnet_id                   = aws_subnet.alb_subnet_a.id
   instance_type               = "t2.micro"
   iam_instance_profile        = aws_iam_instance_profile.ec2_profile.name
   associate_public_ip_address = true
+
+  #key_name                    = aws_key_pair.ec2.key_name
+
   key_name                    = aws_key_pair.generated_key.key_name
+
   security_groups             = [aws_security_group.alb_security_group.id]
   # user_data                   = <<EOF
   #        sudo su
@@ -66,6 +78,7 @@ resource "aws_instance" "srv_glpi" {
   associate_public_ip_address = true
   key_name                    = aws_key_pair.generated_key.key_name
   security_groups             = [aws_security_group.alb_security_group.id]
+
 
   root_block_device {
     volume_type           = "gp3"

@@ -70,6 +70,12 @@ variable "glpi_server" {
   default     = "srv_glpi"
 }
 
+variable "srv_grafana" {
+  description = "EC2 Graphana instance name"
+  type        = string
+  default     = "srv_graphana"
+}
+
 #key pair - Location to the SSH Key generate using openssl or ssh-keygen or AWS KeyPair
 variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
