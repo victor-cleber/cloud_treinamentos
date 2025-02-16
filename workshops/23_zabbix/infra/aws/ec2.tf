@@ -1,8 +1,8 @@
 
-resource "aws_key_pair" "ec2" {
-  key_name   = "${var.zabbix_server}_key_pair"
-  public_key = file(var.ssh_pubkey_file)
-}
+# resource "aws_key_pair" "ec2" {
+#   key_name   = "${var.zabbix_server}_key_pair"
+#   public_key = file(var.ssh_pubkey_file)
+# }
 
 
 resource "tls_private_key" "example" {

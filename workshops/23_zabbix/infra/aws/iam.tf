@@ -85,8 +85,16 @@ resource "aws_iam_policy" "ec2_policy_to_secrets_manager" {
         ],
         "Resource" : [
           "*"
-        ]
-      }
-    ]
+        ],
+      },
+    {
+      "Sid": "AllowEC2ToSeeParameters"
+      "Effect": "Allow",
+      "Action": [
+        "ssm:DescribeParameters",
+        "ssm:GetParameters"
+      ],
+    "Resource": ["*"]
+    }]
   })
 }

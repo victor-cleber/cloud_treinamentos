@@ -8,7 +8,7 @@ resource "aws_db_instance" "db_instance" {
   engine_version         = "8.0.39"
   multi_az               = false
   identifier             = "workshop23"
-  username               = "zabbix"
+  username               = "workshop_admin"
   password               = random_string.for_rds_password.id
   instance_class         = "db.t3.micro"
   allocated_storage      = 10
